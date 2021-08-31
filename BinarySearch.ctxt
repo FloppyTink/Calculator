@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=BinarySearch
+comment1.params=
+comment1.target=void\ inName()
+comment2.params=
+comment2.target=void\ readArryList()
+comment3.params=arr\ x
+comment3.target=int\ binarySearch(java.util.ArrayList,\ int)
+comment4.params=args
+comment4.target=void\ main(java.lang.String[])
+comment4.text=\r\n\ \ \ \ private\ int\ binarySearch(ArrayList<Student.name>\ list,String\ n){\r\n\ \ \ \ \ \ \ \ int\ l\ \=\ 0,\ r\=\ list.size()-1;\r\n\ \ \ \ while(l<\=r){\r\n\ \ \ \ \ \ \ \ int\ m\ \=\ l+(r-l)/2;\r\n\ \ \ \ \ \ \ \ if\ (list.get(m)\ \=\=\ n)\r\n\ \ \ \ \ \ \ \ \ \ \ \ return\ m;\r\n\ \ \ \ \ \ \ \ \ \ \ \ \r\n\ \ \ \ \ \ \ \ if\ (list.get(m)\ <\ n)\r\n\ \ \ \ \ \ \ \ \ \ \ \ l\ \=\ m\ +1;\r\n\ \ \ \ \ \ \ \ else\ \r\n\ \ \ \ \ \ \ \ \ \ \ \ r\ \=\ m-1;\r\n\ \ \ \ }\r\n\ \ \ \ return\ -1;\r\n\ \ \ \ }\r\n
+numComments=5

@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.target=SortName
+comment0.text=\r\n\ This\ is\ a\ course\ project\ of\ a\ simple\ calculator\ which\ proform\ \r\n\ basic\ calculation\r\n\ \r\n\ @Author\ (Qiang\ Wang\ )\r\n\ @Version\ (1.3\ /\ 27-07-2021)\r\n
+comment1.params=
+comment1.target=SortName()
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ SortName\r\n
+comment2.params=studentList
+comment2.target=void\ sortStduentList(java.util.ArrayList)
+comment2.text=Method\ to\ sort\ students\ list\r\n\ \r\n\ \r\n
+comment3.params=list\ name
+comment3.target=void\ binarySearch(java.util.ArrayList,\ java.lang.String)
+comment4.params=
+comment4.target=void\ readStudentList()
+comment4.text=\r\n\ implement\ array\ in\ for-loop\ and\ while-loop.\ \r\n\ \r\n
+comment5.params=
+comment5.target=void\ readArrayList()
+comment5.text=Implement\ ArrayList\ in\ for-loop\ and\ while-loop\r\n\ \r\n
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+numComments=7
