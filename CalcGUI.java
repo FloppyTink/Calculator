@@ -11,7 +11,7 @@ import java.awt.event.*;
 public class CalcGUI extends JFrame implements ActionListener{
     // instance variables
     
-    JPanel panelTop,numPanel,panelCenter,funPanel,panelBottom;
+    JPanel panelTop,numPanel,panelCenter,funPanel,panelLeft;
     JTextField textField;
     
     JButton[] buttons;
@@ -67,11 +67,22 @@ public class CalcGUI extends JFrame implements ActionListener{
             buttons[i].addActionListener(this);
             numPanel.add(buttons[i]);
         }
+        equalTo= new JButton("=");//for equalTo.
+        equalTo.addActionListener(this);
+        equalTo.setActionCommand("CMD_eq");
+        equalTo.setSize(40,100);
+        
+        panelLeft = new JPanel();
+        BorderLayout panelLeftLayout = new BorderLayout(10,10);
+        panelLeft.setLayout(panelLeftLayout);
+        panelLeft.setBackground(Color.white);
+        panelLeft.add(numPanel,BorderLayout.CENTER);
+        panelLeft.add(equalTo,BorderLayout.SOUTH);
+
         
         funPanel = new JPanel();
         funPanel.setBackground (Color.white);
         GridBagLayout funPanelLayout = new GridBagLayout();
-        
         funPanel.setLayout(funPanelLayout);
         GridBagConstraints gbc = new GridBagConstraints();
         
@@ -137,36 +148,28 @@ public class CalcGUI extends JFrame implements ActionListener{
         btnBf.setActionCommand("CMD_Bf");
         funPanel.add(btnBf,gbc);
         
-        panelCenter.add(numPanel);
-        panelCenter.add(funPanel);
-           
-        equalTo= new JButton("=");//for equalTo.
-        equalTo.addActionListener(this);
-        equalTo.setActionCommand("CMD_eq");
-        
+        gbc.gridx = 0;
+        gbc.gridy = 4;
         JButton f= new JButton("!");
         f.addActionListener(this);
         f.setActionCommand("CMD_Fa");
+        funPanel.add(f,gbc);
         
+        gbc.gridx = 1;
+        gbc.gridy = 4;
         JButton off= new JButton("OFF");
         off.addActionListener(this);
         off.setActionCommand("CMD_OFF");
+        funPanel.add(off,gbc);
         
-        panelBottom = new JPanel();
-        panelBottom.setBackground(Color.white);
-        panelBottom.setSize(40,200);
-        panelBottom.add(equalTo);
-        panelBottom.add(f);
-        panelBottom.add(off);
+        panelCenter.add(panelLeft);
+        panelCenter.add(funPanel);
         
-        
-        BorderLayout mainLayout = new BorderLayout(20,20);
+        BorderLayout mainLayout = new BorderLayout(10,10);
         setLayout(mainLayout);
-        
         
         add(panelTop, BorderLayout.NORTH);
         add(panelCenter, BorderLayout.CENTER);
-        add(panelBottom,BorderLayout.SOUTH);
         
         /**
         //initialise instance variables
