@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 /**
  * Write a description of class CalcGUI here.
@@ -13,6 +14,7 @@ public class CalcGUI extends JFrame implements ActionListener{
     
     JPanel panelTop,numPanel,panelCenter,funPanel,panelLeft;
     JTextField textField;
+    
     
     JButton[] buttons;
     String[] buttonNames={"1","2","3","4","5","6","7","8","9","+/-","0","."};
@@ -256,9 +258,69 @@ public class CalcGUI extends JFrame implements ActionListener{
         textField.setText(displayText); 
     }
     
+    private String getExpression(){
+        String expression = "";
+        Scanner inScanner =
+        return expression;
+    }
+    
+    private int isOperator(char c){
+        switch (c){
+            case'+':
+            case '-':
+                    return 1;
+            case '*':
+            case '/':
+                    return 2;
+        }
+        return -1;
+    }
+    
+    /**
+       * convert expression from infix format to postfix format
+       * @param:infix
+       * @output: postfix
+       */
+    public String convert(String infix){
+        Stack<Character> stack = new Stack();
+        String postfix = "";
+        for (int i=0; i<infix.length();i++){
+            char c =infix.charAt(i);
+            if(isOperator(c)>0){
+                //operator
+                while (!stack.isEmpty() && (isOperator(c)<= isOperator(stack.peek()))){
+                    postfix=postfix + stack.pop();
+                }
+                stack.push(c);
+            }else
+            if (c =='('){
+                //left parenthesis
+                stack.push(c); //push to stack
+            }else
+            if (c == ')'){
+                //right parethesis
+                while (!stack.isEmpty() && stack.peek() !='('){
+                    postfix = postfix + stack.pop();
+                }
+                stack.pop();
+            }else{
+                //operand
+                postfix = postfix + c;
+            }
+        }
+        while (!stack.isEmpty()){
+            postfix = postfix + stack.pop();
+        }
+        return postfix;
+    }
+    
     public static void main (String[] args){
-        CalcGUI calc = new CalcGUI();
-        calc.setVisible(true);
+        //CalcGUI calc = new CalcGUI();
+        //calc.setVisible(true);
+        CalcGUI i2p = new CalcGUI ();
+        //String postfix = i2p.convert();
+        //System.out.println(postfix);
+        
     }
 
     }
