@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Write a description of class CalcGUI here.
@@ -45,7 +46,7 @@ public class CalcGUI extends JFrame implements ActionListener{
         
         
         //add TextField in the container (North)
-        textField = new JTextField("0");
+        textField = new JTextField("");
         Font textFieldFont = new Font("SansSerif", Font.BOLD, 24);
         textField.setFont(textFieldFont);
         textField.setHorizontalAlignment(JTextField.RIGHT);        
@@ -213,7 +214,7 @@ public class CalcGUI extends JFrame implements ActionListener{
             displayText = displayText + "9";
         } else
         if (command.equals("CMD_+/-")) {
-            displayText = displayText + "-";
+            displayText =  "-" + displayText;
         } else
         if (command.equals("CMD_0")) {
             displayText = displayText + "0";
@@ -247,30 +248,72 @@ public class CalcGUI extends JFrame implements ActionListener{
             displayText = displayText+")";
         }else 
         if (command.equals("CMD_eq")){
-            
+            String out = convert(displayText);
+            double result = evaluate (out);
+            String stringResult = String.valueOf(result);
+            displayText = stringResult;
         }else 
         if (command.equals("CMD_Fa")){
             displayText = displayText+"!";
         }else 
         if (command.equals("CMD_OFF")){
-            
+            System.exit(0);
         }
         textField.setText(displayText); 
     }
     
-    private String getExpression(){
-        String expression = "";
-        Scanner inScanner =
-        return expression;
+    public double evaluate (String postfix){
+        double result = 0;
+        Stack<Double> stack = new Stack ();
+        for (int i = 0; i<postfix.length();i++){
+            char c = postfix.charAt(i);
+            if (isOperator (c) > 0){
+                if (c == '!'){
+                    double operand1 = Double.parseDouble(""+ stack.pop());
+                    System.out.println(operand1);
+                    result = 1;
+                    for (i = 1; i<=operand1; i++){
+                        result = result *i;
+                    }
+                } else
+                if(c =='+'){
+                    double operand2 = Double.parseDouble(" "+ stack.pop());
+                    double operand1 = Double.parseDouble(" "+ stack.pop());
+                    result = operand1 + operand2;
+                }else 
+                if (c == '-'){
+                    double operand2 = Double.parseDouble(" "+ stack.pop());
+                    double operand1 = Double.parseDouble(" "+ stack.pop());
+                    result = operand1 - operand2;
+                }else 
+                if (c == '*'){
+                    double operand2 = Double.parseDouble(" "+ stack.pop());
+                    double operand1 = Double.parseDouble(" "+ stack.pop());
+                    result = operand1 * operand2;
+                }else 
+                if (c == '/'){
+                    double operand2 = Double.parseDouble(" "+ stack.pop());
+                    double operand1 = Double.parseDouble(" "+ stack.pop());
+                    result = operand1 / operand2;
+                }
+                stack.push(result);
+            }else {
+                stack.push(Double.parseDouble(""+ c ));
+            }
+        }
+        result = stack.pop();
+        
+        return result;
     }
     
     private int isOperator(char c){
         switch (c){
-            case'+':
+            case '+':
             case '-':
                     return 1;
             case '*':
             case '/':
+            case '!':
                     return 2;
         }
         return -1;
@@ -290,6 +333,7 @@ public class CalcGUI extends JFrame implements ActionListener{
                 //operator
                 while (!stack.isEmpty() && (isOperator(c)<= isOperator(stack.peek()))){
                     postfix=postfix + stack.pop();
+                    System.out.println(postfix);
                 }
                 stack.push(c);
             }else
@@ -308,15 +352,18 @@ public class CalcGUI extends JFrame implements ActionListener{
                 postfix = postfix + c;
             }
         }
+        
         while (!stack.isEmpty()){
             postfix = postfix + stack.pop();
         }
+        System.out.println(postfix);
         return postfix;
     }
     
     public static void main (String[] args){
-        //CalcGUI calc = new CalcGUI();
-        //calc.setVisible(true);
+        CalcGUI calc = new CalcGUI();
+        calc.setVisible(true);
+        
         CalcGUI i2p = new CalcGUI ();
         //String postfix = i2p.convert();
         //System.out.println(postfix);
