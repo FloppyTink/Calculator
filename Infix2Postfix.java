@@ -102,7 +102,7 @@ public class Infix2Postfix {
      */
     public static void main(String[] args) {
         Infix2Postfix i2p = new Infix2Postfix();
-        String expression = "1+(2*3)-4";
+        String expression = "3+2*2";
         //String expression = "1.8 + ( 2 * 3 ) - 4.0";
         //expression.split(" "); //--> ["1.8","+',"(", "2", "*", "3", ")", "-", "4.0"]
         

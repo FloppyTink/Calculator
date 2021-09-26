@@ -223,7 +223,7 @@ public class CalcGUI extends JFrame implements ActionListener{
             displayText = displayText+".";
         } else 
         if (command.equals("CMD_Plus")){
-            displayText = displayText+"+";
+            displayText = displayText+" + ";
         } else 
         if (command.equals("CMD_BSP")){
             int len = displayText.length();
@@ -248,6 +248,8 @@ public class CalcGUI extends JFrame implements ActionListener{
             displayText = displayText+")";
         }else 
         if (command.equals("CMD_eq")){
+            displayText.split(" ");
+            System.out.println(displayText);
             String out = convert(displayText);
             double result = evaluate (out);
             String stringResult = String.valueOf(result);
@@ -268,36 +270,37 @@ public class CalcGUI extends JFrame implements ActionListener{
         for (int i = 0; i<postfix.length();i++){
             char c = postfix.charAt(i);
             if (isOperator (c) > 0){
+                double operand2 = Double.parseDouble(""+ stack.pop());
+                if (c == ' '){
+                    
+                } else
                 if (c == '!'){
                     double operand1 = Double.parseDouble(""+ stack.pop());
-                    System.out.println(operand1);
+                    //System.out.println(operand1);
                     result = 1;
                     for (i = 1; i<=operand1; i++){
                         result = result *i;
                     }
                 } else
                 if(c =='+'){
-                    double operand2 = Double.parseDouble(" "+ stack.pop());
-                    double operand1 = Double.parseDouble(" "+ stack.pop());
+                    double operand1 = Double.parseDouble(""+ stack.pop());
                     result = operand1 + operand2;
                 }else 
                 if (c == '-'){
-                    double operand2 = Double.parseDouble(" "+ stack.pop());
-                    double operand1 = Double.parseDouble(" "+ stack.pop());
+                    double operand1 = Double.parseDouble(""+ stack.pop());
                     result = operand1 - operand2;
                 }else 
                 if (c == '*'){
-                    double operand2 = Double.parseDouble(" "+ stack.pop());
-                    double operand1 = Double.parseDouble(" "+ stack.pop());
+                    double operand1 = Double.parseDouble(""+ stack.pop());
                     result = operand1 * operand2;
                 }else 
                 if (c == '/'){
-                    double operand2 = Double.parseDouble(" "+ stack.pop());
-                    double operand1 = Double.parseDouble(" "+ stack.pop());
+                    double operand1 = Double.parseDouble(""+ stack.pop());
                     result = operand1 / operand2;
                 }
                 stack.push(result);
-            }else {
+                
+            } else {
                 stack.push(Double.parseDouble(""+ c ));
             }
         }
@@ -315,6 +318,8 @@ public class CalcGUI extends JFrame implements ActionListener{
             case '/':
             case '!':
                     return 2;
+            case ' ':
+                    return 3;
         }
         return -1;
     }
@@ -333,7 +338,7 @@ public class CalcGUI extends JFrame implements ActionListener{
                 //operator
                 while (!stack.isEmpty() && (isOperator(c)<= isOperator(stack.peek()))){
                     postfix=postfix + stack.pop();
-                    System.out.println(postfix);
+                    //System.out.println(postfix);
                 }
                 stack.push(c);
             }else
