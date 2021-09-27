@@ -1,17 +1,21 @@
 #BlueJ class context
 comment0.target=CalcGUI
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ CalcGUI\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ This\ is\ a\ Java\ calculater\ with\ GUI.\r\n\r\n\ @Qiang\ Wang\r\n\ @1.0\r\n
 comment1.params=
 comment1.target=CalcGUI()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ CalcGUI\r\n
 comment2.params=
 comment2.target=void\ CreateCalcGUI()
+comment2.text=\r\n\ Construction\ of\ GUI,\ add\ up,\ center\ and\ lower\ pannel.\ \r\n
 comment3.params=e
 comment3.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment3.text=\r\n\ ActionListener\ to\ get\ button\ command\ and\ action\ the\ command.\ \r\n
 comment4.params=postfix
 comment4.target=double\ evaluate(java.lang.String)
+comment4.text=\r\n\ evaluate\ postfix\ expression,\ get\ result\ from\ calculations\ with*,/,\!\ first\ and\ +,-\ last,\r\n\ and\ return\ result.\r\n\ @parameters\:\ postfix\r\n\ @return\:\ result\r\n
 comment5.params=c
 comment5.target=int\ isOperator(char)
+comment5.text=\r\n\ Method\ to\ select\ operator,\ level\ the\ operator\ order.\r\n\ make\ evaluation\ do\ *,/,\!\ first\ and\ +,-\ last.\r\n
 comment6.params=infix
 comment6.target=java.lang.String\ convert(java.lang.String)
 comment6.text=\r\n\ convert\ expression\ from\ infix\ format\ to\ postfix\ format\r\n\ @param\:infix\r\n\ @output\:\ postfix\r\n

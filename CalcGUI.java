@@ -1,14 +1,14 @@
-import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.util.ArrayList;
+import javax.swing.*;
 
 /**
- * Write a description of class CalcGUI here.
+ * This is a Java calculater with GUI.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @Qiang Wang
+ * @1.0
  */
 public class CalcGUI extends JFrame implements ActionListener{
     // instance variables
@@ -38,6 +38,9 @@ public class CalcGUI extends JFrame implements ActionListener{
         CreateCalcGUI();
     }
     
+    /**
+     * Construction of GUI, add up, center and lower pannel. 
+     */
     private void CreateCalcGUI(){
         //Set Panel top
         panelTop = new JPanel();
@@ -173,15 +176,11 @@ public class CalcGUI extends JFrame implements ActionListener{
         
         add(panelTop, BorderLayout.NORTH);
         add(panelCenter, BorderLayout.CENTER);
-        
-        /**
-        //initialise instance variables
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setPreferredSize(new Dimension(424,480));
-        pack();
-        **/
     }
     
+    /**
+     * ActionListener to get button command and action the command. 
+     */
     public void actionPerformed(ActionEvent e){
         String displayText;
         displayText = textField.getText();
@@ -223,7 +222,7 @@ public class CalcGUI extends JFrame implements ActionListener{
             displayText = displayText+".";
         } else 
         if (command.equals("CMD_Plus")){
-            displayText = displayText+" + ";
+            displayText = displayText+"+";
         } else 
         if (command.equals("CMD_BSP")){
             int len = displayText.length();
@@ -249,9 +248,9 @@ public class CalcGUI extends JFrame implements ActionListener{
         }else 
         if (command.equals("CMD_eq")){
             displayText.split(" ");
-            System.out.println(displayText);
-            String out = convert(displayText);
-            double result = evaluate (out);
+            //System.out.println(displayText);
+            String outExpression = convert(displayText);
+            double result = evaluate (outExpression);
             String stringResult = String.valueOf(result);
             displayText = stringResult;
         }else 
@@ -264,6 +263,12 @@ public class CalcGUI extends JFrame implements ActionListener{
         textField.setText(displayText); 
     }
     
+    /**
+     * evaluate postfix expression, get result from calculations with*,/,! first and +,- last,
+     * and return result.
+     * @parameters: postfix
+     * @return: result
+     */
     public double evaluate (String postfix){
         double result = 0;
         Stack<Double> stack = new Stack ();
@@ -271,14 +276,14 @@ public class CalcGUI extends JFrame implements ActionListener{
             char c = postfix.charAt(i);
             if (isOperator (c) > 0){
                 double operand2 = Double.parseDouble(""+ stack.pop());
-                if (c == ' '){
+                //if (c == ' '){
                     
-                } else
+                //} else
                 if (c == '!'){
-                    double operand1 = Double.parseDouble(""+ stack.pop());
+                    //double operand1 = Double.parseDouble(""+ stack.pop());
                     //System.out.println(operand1);
                     result = 1;
-                    for (i = 1; i<=operand1; i++){
+                    for (i = 1; i<=operand2; i++){
                         result = result *i;
                     }
                 } else
@@ -309,6 +314,10 @@ public class CalcGUI extends JFrame implements ActionListener{
         return result;
     }
     
+    /**
+     * Method to select operator, level the operator order.
+     * make evaluation do *,/,! first and +,- last.
+     */
     private int isOperator(char c){
         switch (c){
             case '+':
@@ -318,8 +327,6 @@ public class CalcGUI extends JFrame implements ActionListener{
             case '/':
             case '!':
                     return 2;
-            case ' ':
-                    return 3;
         }
         return -1;
     }
@@ -361,7 +368,7 @@ public class CalcGUI extends JFrame implements ActionListener{
         while (!stack.isEmpty()){
             postfix = postfix + stack.pop();
         }
-        System.out.println(postfix);
+        //System.out.println(postfix);
         return postfix;
     }
     
